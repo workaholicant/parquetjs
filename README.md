@@ -1,7 +1,8 @@
-# parquet.js
+## This is a the babel transpiled dev branch for lambda
 
-fully asynchronous, pure node.js implementation of the Parquet file format
-
+```
+babel ./lib --presets=es2017 --out-dir=./lib
+```
 [![Build Status](https://travis-ci.org/ironSource/parquetjs.png?branch=master)](http://travis-ci.org/ironSource/parquetjs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![npm version](https://badge.fury.io/js/parquetjs.svg)](https://badge.fury.io/js/parquetjs)
