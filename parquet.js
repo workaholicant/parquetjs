@@ -3,6 +3,7 @@ const writer = require('./lib/writer');
 const schema = require('./lib/schema');
 const shredder = require('./lib/shred');
 const util = require('./lib/util');
+const PathStreamer = require('./lib/pathStreamer');
 
 module.exports = {
   ParquetEnvelopeReader: reader.ParquetEnvelopeReader,
@@ -12,5 +13,6 @@ module.exports = {
   ParquetTransformer: writer.ParquetTransformer,
   ParquetSchema: schema.ParquetSchema,
   ParquetShredder: shredder,
-  force32: util.force32
+  force32: util.force32,
+  ParquetStream: PathStreamer
 };
