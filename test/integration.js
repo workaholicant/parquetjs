@@ -9,7 +9,7 @@ const parquet_util = require('../lib/util');
 const objectStream = require('object-stream');
 const stream = require('stream')
 
-const TEST_NUM_ROWS = 10000;
+const TEST_NUM_ROWS = 1000;
 const TEST_VTIME =  new Date();
 
 function mkTestSchema(opts) {
@@ -29,8 +29,7 @@ function mkTestSchema(opts) {
         warehouse: { type: 'UTF8', compression: opts.compression },
       }
     },
-    colour:     { type: 'UTF8', repeated: true, compression: opts.compression },
-    meta_json:  { type: 'BSON', optional: true, compression: opts.compression  },
+    colour:     { type: 'UTF8', repeated: true, compression: opts.compression }
   });
 };
 
@@ -81,7 +80,6 @@ function mkTestRows(opts) {
         { quantity: 20n, warehouse: "x" }
       ],
       colour: [ 'green', 'brown' ],
-      meta_json: { expected_ship_date: TEST_VTIME }
     });
 
     rows.push({
@@ -91,8 +89,7 @@ function mkTestRows(opts) {
       date: new Date(TEST_VTIME + 6000 * i),
       finger: "FNORD",
       inter: { months: 42, days: 23, milliseconds: 777 },
-      colour: [ 'yellow' ],
-      meta_json: { shape: 'curved' }
+      colour: [ 'yellow' ]
     });
   }
 
@@ -199,7 +196,7 @@ async function readTestFile() {
   assert.deepEqual(reader.getMetadata(), { "myuid": "420", "fnord": "dronf" })
 
   let schema = reader.getSchema();
-  assert.equal(schema.fieldList.length, 12);
+  assert.equal(schema.fieldList.length, 11);
   assert(schema.fields.name);
   assert(schema.fields.stock);
   assert(schema.fields.stock.fields.quantity);
@@ -324,8 +321,7 @@ async function readTestFile() {
           { quantity: [42n], warehouse: "f" },
           { quantity: [20n], warehouse: "x" }
         ],
-        colour: [ 'green', 'brown' ],
-        meta_json: { expected_ship_date: TEST_VTIME }
+        colour: [ 'green', 'brown' ]
       });
 
       assert.deepEqual(await cursor.next(), {
@@ -335,8 +331,7 @@ async function readTestFile() {
         date: new Date(TEST_VTIME + 6000 * i),
         finger: Buffer.from("FNORD"),
         inter: { months: 42, days: 23, milliseconds: 777 },
-        colour: [ 'yellow' ],
-        meta_json: { shape: 'curved' }
+        colour: [ 'yellow' ]
       });
     }
 
@@ -454,6 +449,7 @@ describe('Parquet', function() {
     //   return writeTestFile(opts).then(readTestFile);
     // });
 
+    /*
     it('write a test file with BROTLI compression', function() {
       const opts = { useDataPageV2: true, compression: 'BROTLI' };
       return writeTestFile(opts);
@@ -463,6 +459,7 @@ describe('Parquet', function() {
       const opts = { useDataPageV2: true, compression: 'BROTLI' };
       return writeTestFile(opts).then(readTestFile);
     });
+    */
 
   });
 

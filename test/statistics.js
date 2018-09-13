@@ -20,8 +20,7 @@ const schema = new parquet.ParquetSchema({
       warehouse: { type: 'UTF8' },
     }
   },
-  colour:     { type: 'UTF8', repeated: true },
-  meta_json:  { type: 'BSON', optional: true, statistics: false},
+  colour:     { type: 'UTF8', repeated: true }
 });
 
 
@@ -73,8 +72,7 @@ describe('statistics', async function() {
         { quantity: 42n, warehouse: "f" },
         { quantity: 21n, warehouse: "x" }
       ],
-      colour: [ 'green', 'brown', 'yellow' ],
-      meta_json: { expected_ship_date: TEST_VTIME }
+      colour: [ 'green', 'brown', 'yellow' ]
     });
 
     writer.appendRow({
@@ -84,8 +82,7 @@ describe('statistics', async function() {
       date: new Date(TEST_VTIME + 6000),
       finger: "FNORD",
       inter: { months: 1, days: 15, milliseconds: 888 },
-      colour: [ 'yellow'],
-      meta_json: { shape: 'curved' }
+      colour: [ 'yellow']
     });
 
     await writer.close();
@@ -138,7 +135,6 @@ describe('statistics', async function() {
     assert.equal(+rowStats('colour').null_count, 0);
 
     assert.equal(rowStats('inter'), null);
-    assert.equal(rowStats('meta_json'), null);
   });
 
   it('columnIndex statistics should match input', async function() {
@@ -179,9 +175,6 @@ describe('statistics', async function() {
     
     const inter = await reader.envelopeReader.readColumnIndex('inter', row).catch(e => e);
     assert.equal(inter.message,'Column Index Missing');
-
-    const meta_json = await reader.envelopeReader.readColumnIndex('meta_json', row).catch(e => e);
-    assert.equal(meta_json.message,'Column Index Missing');
   });
 
   it('Setting pageIndex: false results in no column_index and no offset_index', async function() {
@@ -198,8 +191,7 @@ describe('statistics', async function() {
         { quantity: 10n, warehouse: "A" },
         { quantity: 20n, warehouse: "B" }
       ],
-      colour: [ 'green', 'red' ],
-      meta_json: { expected_ship_date: TEST_VTIME }
+      colour: [ 'green', 'red' ]
     });
     await writer.close();
 
