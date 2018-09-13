@@ -1,7 +1,7 @@
 'use strict';
 const chai = require('chai');
 const assert = chai.assert;
-const thrift = require('thrift');
+const thrift = require('../modules/thrift-lite');
 const parquet_thrift = require('../gen-nodejs/parquet_types')
 const parquet_util = require('../lib/util')
 
