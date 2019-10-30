@@ -2,7 +2,7 @@
   "name": "parquetjs-lite",
   "description": "fully asynchronous, pure JavaScript implementation of the Parquet file format",
   "main": "parquet",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "homepage": "https://github.com/ZJONSSON/parquetjs",
   "author": "ironSource <npm@ironsrc.com>",
   "license": "MIT",
