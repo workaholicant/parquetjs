@@ -2,6 +2,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 const parquet_codec_rle = require('../lib/codec/rle.js');
+const Buffer = require('buffer').Buffer;
 
 describe('ParquetCodec::RLE', function() {
 

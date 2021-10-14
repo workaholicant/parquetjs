@@ -3,6 +3,7 @@ const chai = require('chai');
 const assert = chai.assert;
 const parquet_codec_plain = require('../lib/codec/plain.js');
 const assert_util = require('./util/assert_util.js');
+const Buffer = require('buffer').Buffer;
 
 describe('ParquetCodec::PLAIN', function() {
 

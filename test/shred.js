@@ -2,6 +2,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 const parquet = require('../parquet.js');
+const Buffer = require('buffer').Buffer;
 
 describe('ParquetShredder', function() {
 

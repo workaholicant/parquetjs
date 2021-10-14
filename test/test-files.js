@@ -4,6 +4,7 @@ const fs = require('fs');
 const assert = chai.assert;
 const path = require('path');
 const parquet = require('../parquet.js');
+const Buffer = require('buffer').Buffer;
 const {promisify} = require('util');
 
 describe('test-files', function() {  

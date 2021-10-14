@@ -8,6 +8,7 @@ const parquet_thrift = require('../gen-nodejs/parquet_types');
 const parquet_util = require('../lib/util');
 const objectStream = require('object-stream');
 const stream = require('stream')
+const Buffer = require('buffer').Buffer;
 
 const TEST_NUM_ROWS = 10000;
 const TEST_VTIME =  new Date();
